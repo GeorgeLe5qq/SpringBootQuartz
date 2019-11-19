@@ -80,7 +80,13 @@ public class JobController
 	{			
 		jobPause(jobClassName, jobGroupName);
 	}
-	
+
+	/**
+	 * 暂停一个定时任务，如果定时任务未执行完毕则执行完毕后再暂停
+	 * @param jobClassName
+	 * @param jobGroupName
+	 * @throws Exception
+	 */
 	public void jobPause(String jobClassName, String jobGroupName) throws Exception
 	{	
 		scheduler.pauseJob(JobKey.jobKey(jobClassName, jobGroupName));
@@ -151,7 +157,7 @@ public class JobController
 		map.put("number", jobAndTrigger.getTotal());
 		return map;
 	}
-	
+
 	public static BaseJob getClass(String classname) throws Exception 
 	{
 		Class<?> class1 = Class.forName(classname);

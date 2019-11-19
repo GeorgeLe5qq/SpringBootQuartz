@@ -8,15 +8,19 @@ import org.quartz.JobExecutionException;
   
 public class NewJob implements BaseJob {  
   
-    private static Logger _log = LoggerFactory.getLogger(NewJob.class);  
+    private static Logger logger = LoggerFactory.getLogger(NewJob.class);
      
     public NewJob() {  
           
     }  
      
-    public void execute(JobExecutionContext context)  
-        throws JobExecutionException {  
-        _log.error("New Job执行时间: " + new Date());  
-          
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        logger.info("New Job执行时间 start : " + new Date());
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        logger.info("New Job执行时间 end : " + new Date());
     }  
 }  
